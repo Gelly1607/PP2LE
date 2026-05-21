@@ -35,15 +35,15 @@ public class MainMenuFrame extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -70,39 +70,40 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
         jMenu1.setText("Add");
 
-        jMenuItem1.setText("Patient");
+        jMenuItem1.setText("Patient (Student)");
         jMenuItem1.addActionListener(this::jMenuItem1ActionPerformed);
         jMenu1.add(jMenuItem1);
         jMenu1.add(jSeparator1);
-
-        jMenuItem2.setText("Student");
-        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Teacher");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Staff");
-        jMenuItem4.addActionListener(this::jMenuItem4ActionPerformed);
-        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Search");
 
-        jMenuItem5.setText("All Patients");
+        jMenuItem5.setText("All Students");
         jMenuItem5.addActionListener(this::jMenuItem5ActionPerformed);
         jMenu2.add(jMenuItem5);
         jMenu2.add(jSeparator2);
 
-        jMenuItem6.setText("Student (only)");
+        jMenuItem6.setText("CAEC");
+        jMenuItem6.addActionListener(this::jMenuItem6ActionPerformed);
         jMenu2.add(jMenuItem6);
 
-        jMenuItem7.setText("Teacher (only)");
+        jMenuItem7.setText("CAS");
         jMenu2.add(jMenuItem7);
 
-        jMenuItem8.setText("Staff (only)");
+        jMenuItem8.setText("CBA");
+        jMenuItem8.addActionListener(this::jMenuItem8ActionPerformed);
         jMenu2.add(jMenuItem8);
+
+        jMenuItem2.setText("CED");
+        jMenuItem2.addActionListener(this::jMenuItem2ActionPerformed);
+        jMenu2.add(jMenuItem2);
+
+        jMenuItem3.setText("CIC");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("COE");
+        jMenu2.add(jMenuItem4);
 
         jMenuBar1.add(jMenu2);
 
@@ -150,21 +151,25 @@ public class MainMenuFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
