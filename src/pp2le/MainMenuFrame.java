@@ -54,6 +54,11 @@ public class MainMenuFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Main Menu Frame");
         setBackground(new java.awt.Color(206, 206, 206));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 51));
@@ -162,7 +167,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         
-    SearchPatientFrame sframe = new SearchPatientFrame(PObj);
+    SearchPatientFrame sframe = new SearchPatientFrame();
     sframe.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -193,6 +198,10 @@ public class MainMenuFrame extends javax.swing.JFrame {
         System.exit(0);
         
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

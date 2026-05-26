@@ -16,8 +16,6 @@ import javax.swing.table.DefaultTableModel;
 
 public class SearchPatientFrame extends javax.swing.JFrame {
     
-    private PatientArray patientArray;
-    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchPatientFrame.class.getName());
 
     /**
@@ -25,11 +23,12 @@ public class SearchPatientFrame extends javax.swing.JFrame {
      */
     public SearchPatientFrame() {
         initComponents();
+        refreshTable();
     }
     
     public SearchPatientFrame(PatientArray pa) {
     initComponents();
-    this.patientArray = pa;
+    refreshTable();
     }
     
     public void refreshTable() {
@@ -43,26 +42,20 @@ public class SearchPatientFrame extends javax.swing.JFrame {
         "College"
     };
 
-    Object[][] data =
-        new Object[x.size()][4];
+    Object[][] data = new Object[x.size()][4];
 
     for(int i = 0; i < x.size(); i++) {
 
-        data[i][0] =
-            x.get(i).getFirstName();
+        data[i][0] = x.get(i).getFirstName();
 
-        data[i][1] =
-            x.get(i).getLastName();
+        data[i][1] = x.get(i).getLastName();
 
-        data[i][2] =
-            x.get(i).getStudentID();
+        data[i][2] = x.get(i).getStudentID();
 
-        data[i][3] =
-            x.get(i).getCollege();
+        data[i][3] = x.get(i).getCollege();
     }
 
-    DefaultTableModel model =
-        new DefaultTableModel(data, columns);
+    DefaultTableModel model = new DefaultTableModel(data, columns);
 
     jTable1.setModel(model);
 
@@ -82,7 +75,7 @@ public class SearchPatientFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Search");
 
@@ -126,8 +119,9 @@ public class SearchPatientFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         pack();
