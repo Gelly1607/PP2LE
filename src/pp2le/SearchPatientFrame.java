@@ -8,7 +8,15 @@ package pp2le;
  *
  * @author Anjulie
  */
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+
 public class SearchPatientFrame extends javax.swing.JFrame {
+    
+    private PatientArray patientArray;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchPatientFrame.class.getName());
 
@@ -17,6 +25,47 @@ public class SearchPatientFrame extends javax.swing.JFrame {
      */
     public SearchPatientFrame() {
         initComponents();
+    }
+    
+    public SearchPatientFrame(PatientArray pa) {
+    initComponents();
+    this.patientArray = pa;
+    }
+    
+    public void refreshTable() {
+
+    ArrayList<StudentPatient> x = MainMenuFrame.PObj.getPatientList();
+
+    String[] columns = {
+        "First Name",
+        "Last Name",
+        "ID",
+        "College"
+    };
+
+    Object[][] data =
+        new Object[x.size()][4];
+
+    for(int i = 0; i < x.size(); i++) {
+
+        data[i][0] =
+            x.get(i).getFirstName();
+
+        data[i][1] =
+            x.get(i).getLastName();
+
+        data[i][2] =
+            x.get(i).getStudentID();
+
+        data[i][3] =
+            x.get(i).getCollege();
+    }
+
+    DefaultTableModel model =
+        new DefaultTableModel(data, columns);
+
+    jTable1.setModel(model);
+
     }
 
     /**
@@ -48,6 +97,11 @@ public class SearchPatientFrame extends javax.swing.JFrame {
                 "Firstname", "Lastname", "ID", "College"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -78,6 +132,17 @@ public class SearchPatientFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        
+        int row = jTable1.getSelectedRow();
+
+        StudentPatient p = MainMenuFrame.PObj.getPatientList().get(row);
+
+        PatientFormFrame PF = new PatientFormFrame(p);
+        PF.setVisible(true);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

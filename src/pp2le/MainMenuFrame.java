@@ -10,6 +10,8 @@ package pp2le;
  */
 public class MainMenuFrame extends javax.swing.JFrame {
     
+    public static PatientArray PObj = new PatientArray();
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenuFrame.class.getName());
 
     /**
@@ -160,8 +162,8 @@ public class MainMenuFrame extends javax.swing.JFrame {
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
         
-        SearchPatientFrame sframe = new SearchPatientFrame();
-        sframe.setVisible(true);
+    SearchPatientFrame sframe = new SearchPatientFrame(PObj);
+    sframe.setVisible(true);
         
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 

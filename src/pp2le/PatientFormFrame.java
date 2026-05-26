@@ -15,12 +15,42 @@ public class PatientFormFrame extends javax.swing.JFrame {
 
     PatientArray patientArray = new PatientArray();
     
+    private StudentPatient temp;
+    
     /**
      * Creates new form PatientFormFrame
      */
     public PatientFormFrame() {
         initComponents();
     }
+    
+    public PatientFormFrame(StudentPatient p) {
+    initComponents();
+    this.temp = p;
+
+    jTextField1.setText(p.getFirstName());
+    jTextField2.setText(p.getLastName());
+    jTextField3.setText(p.getStudentID());
+    jTextField4.setText(p.getCollege());
+    jTextField5.setText(p.getYearLevel());
+    jTextField6.setText(p.getCourse());
+    jTextField7.setText(p.getMajor());
+
+    jTextField8.setText(p.getHeight());
+    jTextField9.setText(p.getWeight());
+    jTextField10.setText(p.getBloodPressure());
+    jTextField11.setText(p.getTemperature());
+    jTextField12.setText(p.getBloodType());
+    jTextField13.setText(p.getAllergies());
+    jTextField14.setText(p.getMedicalHistory());
+    jTextField15.setText(p.getSymptoms());
+    jTextField16.setText(p.getMedicinesTaken());
+    jTextField17.setText(p.getDateVisit());
+    jTextField18.setText(p.getNurseRemarks());
+    jTextField19.setText(p.getLabResultPath());
+
+    jButton2.setText("Update");
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
