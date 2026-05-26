@@ -8,7 +8,11 @@ package pp2le;
  *
  * @author Anjulie
  */
+import javax.swing.JOptionPane;
+
 public class PatientFormFrame extends javax.swing.JFrame {
+    
+    PatientArray patientArray = new PatientArray();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(PatientFormFrame.class.getName());
 
@@ -100,7 +104,17 @@ public class PatientFormFrame extends javax.swing.JFrame {
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
+        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+
+        jTextField3.addActionListener(this::jTextField3ActionPerformed);
+
         jTextField4.addActionListener(this::jTextField4ActionPerformed);
+
+        jTextField5.addActionListener(this::jTextField5ActionPerformed);
+
+        jTextField6.addActionListener(this::jTextField6ActionPerformed);
+
+        jTextField7.addActionListener(this::jTextField7ActionPerformed);
 
         jLabel9.setFont(new java.awt.Font("sansserif", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 51, 51));
@@ -122,6 +136,8 @@ public class PatientFormFrame extends javax.swing.JFrame {
         jLabel15.setText("Height:");
 
         jLabel16.setText("Weight:");
+
+        jTextField14.addActionListener(this::jTextField14ActionPerformed);
 
         jLabel17.setText("Blood Type:");
 
@@ -373,7 +389,62 @@ public class PatientFormFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        if (jButton2.getText().equals("Save")) {
+        StudentPatient sp = new StudentPatient(
+        jTextField1.getText(),
+        jTextField2.getText(),
+        jTextField3.getText(),
+        jTextField4.getText(),
+        jTextField5.getText(),
+        jTextField6.getText(),
+        jTextField7.getText()
+    );
+
+        sp.setHeight(jTextField8.getText());
+        sp.setWeight(jTextField9.getText());
+        sp.setBloodPressure(jTextField10.getText());
+        sp.setTemperature(jTextField11.getText());
+        sp.setBloodType(jTextField12.getText());
+        sp.setAllergies(jTextField13.getText());
+        sp.setMedicalHistory(jTextField14.getText());
+        sp.setSymptoms(jTextField15.getText());
+        sp.setMedicinesTaken(jTextField16.getText());
+        sp.setDateVisit(jTextField17.getText());
+        sp.setNurseRemarks(jTextField18.getText());
+        sp.setLabResultPath(jTextField19.getText());
+
+
+        patientArray.addPatient(sp);
+
+        JOptionPane.showMessageDialog(this,
+            "Patient Saved Successfully!");
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
+
+    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField7ActionPerformed
+
+    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField14ActionPerformed
 
     /**
      * @param args the command line arguments
