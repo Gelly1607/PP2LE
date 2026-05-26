@@ -9,6 +9,11 @@ import java.util.ArrayList;
  *
  * @author Allysa Maravilla
  */
+
+import java.util.ArrayList;
+import java.io.PrintWriter;
+import java.io.FileNotFoundException;
+
 public class PatientArray {
 
     private ArrayList<StudentPatient> patientList;
@@ -20,16 +25,16 @@ public class PatientArray {
     }
 
     // ADD PATIENT
-    public void addPatient(StudentPatient patient) {
+    public void addPatient(StudentPatient p) {
 
-        patientList.add(patient);
+        patientList.add(p);
 
     }
 
     // DELETE PATIENT
-    public void deletePatient(StudentPatient patient) {
+    public void deletePatient(StudentPatient p) {
 
-        patientList.remove(patient);
+        patientList.remove(p);
 
     }
 
@@ -40,20 +45,63 @@ public class PatientArray {
 
     }
 
-    // SEARCH BY STUDENT ID
-    public StudentPatient searchPatient(String studentID) {
+    // SEARCH PATIENT
+    public ArrayList<StudentPatient> searchPatient(String key) {
 
-        for (StudentPatient patient : patientList) {
+        ArrayList<StudentPatient> result =
+                new ArrayList<>();
 
-            if (patient.getStudentID().equals(studentID)) {
+        key = key.toLowerCase();
 
-                return patient;
+        for(StudentPatient p : patientList) {
+
+            if(p.getFirstName().toLowerCase().contains(key)
+            || p.getLastName().toLowerCase().contains(key)
+            || p.getStudentID().toLowerCase().contains(key)) {
+
+                result.add(p);
 
             }
 
         }
 
-        return null;
+        return result;
+
+    }
+
+    // FILTER COLLEGE
+    public ArrayList<StudentPatient> filterCollege(String college) {
+
+        ArrayList<StudentPatient> result =
+                new ArrayList<>();
+
+        for(StudentPatient p : patientList) {
+
+            if(p.getCollege().equalsIgnoreCase(college)) {
+
+                result.add(p);
+
+            }
+
+        }
+
+        return result;
+
+    }
+
+    // SAVE CSV FILE
+    public void writeToFile() throws FileNotFoundException {
+
+        PrintWriter out =
+                new PrintWriter("PatientRecords.csv");
+
+        for(StudentPatient p : patientList) {
+
+            out.println(p.toCSV());
+
+        }
+
+        out.close();
 
     }
 
