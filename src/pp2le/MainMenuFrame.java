@@ -8,6 +8,7 @@ package pp2le;
  *
  * @author Anjulie
  */
+
 public class MainMenuFrame extends javax.swing.JFrame {
     
     public static PatientArray PObj = new PatientArray();
@@ -19,6 +20,8 @@ public class MainMenuFrame extends javax.swing.JFrame {
      */
     public MainMenuFrame() {
         initComponents();
+        
+        PObj.readFromFile();
     }
 
     /**

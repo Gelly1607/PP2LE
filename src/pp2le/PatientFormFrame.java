@@ -11,8 +11,11 @@ package pp2le;
 
 import javax.swing.JOptionPane;
 import javax.swing.*;
+import java.io.FileNotFoundException;
 
 public class PatientFormFrame extends javax.swing.JFrame {
+    
+    private SearchPatientFrame parent;
     
     private StudentPatient temp;
     
@@ -29,16 +32,17 @@ public class PatientFormFrame extends javax.swing.JFrame {
         pack();
     }
     
-    public PatientFormFrame(StudentPatient p) {
+    public PatientFormFrame(StudentPatient p, SearchPatientFrame parent) {
     initComponents();
     
         JScrollPane scrollPane = new JScrollPane();
         scrollPane.setViewportView(getContentPane());
         setContentPane(scrollPane);
 
-        pack();
+    pack();
     
     this.temp = p;
+    this.parent = parent; 
 
     jTextField1.setText(p.getFirstName());
     jTextField2.setText(p.getLastName());
@@ -511,9 +515,15 @@ public class PatientFormFrame extends javax.swing.JFrame {
             sp.setNurseRemarks(jTextField16.getText());
 
             MainMenuFrame.PObj.addPatient(sp);
+            
+            try {
+                MainMenuFrame.PObj.writeToFile();
+    
+            } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            }
 
-            JOptionPane.showMessageDialog(this,
-                "Patient Saved Successfully!");
+            JOptionPane.showMessageDialog(this,"Patient Saved Successfully!");
         }
         else {
 
@@ -536,8 +546,20 @@ public class PatientFormFrame extends javax.swing.JFrame {
             temp.setMedicinesTaken(jTextField17.getText());
             temp.setDateVisit(jTextField18.getText());
             temp.setNurseRemarks(jTextField16.getText());
-
+            
+            try {
+                MainMenuFrame.PObj.writeToFile();
+    
+            } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+            }
+            
             JOptionPane.showMessageDialog(this, "Successfully updated.");
+            
+            if (parent != null) {
+            parent.refreshTable();
+            }
+            this.dispose();
 
             jButton2.setText("Save");
             this.dispose();

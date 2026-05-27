@@ -11,10 +11,12 @@ package pp2le;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.io.FileNotFoundException;
 
 public class SearchPatientFrame extends javax.swing.JFrame {
+    
+    private SearchPatientFrame parent;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchPatientFrame.class.getName());
 
@@ -155,7 +157,7 @@ public class SearchPatientFrame extends javax.swing.JFrame {
     }
 
         if (p != null) {
-        PatientFormFrame PF = new PatientFormFrame(p);
+        PatientFormFrame PF = new PatientFormFrame(p, this);
         PF.setVisible(true);
         }
     }//GEN-LAST:event_jTable1MouseClicked
@@ -177,6 +179,15 @@ public class SearchPatientFrame extends javax.swing.JFrame {
         for (int i = 0; i < list.size(); i++) {
         if (list.get(i).getStudentID().equals(id)) {
             list.remove(i);
+            
+        try {
+            MainMenuFrame.PObj.writeToFile();
+        } catch (FileNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        
+        refreshTable();
+  
             break;
         }
     }
