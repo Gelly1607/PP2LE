@@ -214,5 +214,5 @@ public class StudentPatient extends Person{
            dateVisit + "," +
            nurseRemarks + "," +
            labResultPath;
-}
+    }
 }

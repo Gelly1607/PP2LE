@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 public class SearchPatientFrame extends javax.swing.JFrame {
     
     private SearchPatientFrame parent;
+    private String selectedCollege = "ALL";
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(SearchPatientFrame.class.getName());
 
@@ -28,14 +29,21 @@ public class SearchPatientFrame extends javax.swing.JFrame {
         refreshTable();
     }
     
-    public SearchPatientFrame(PatientArray pa) {
-    initComponents();
-    refreshTable();
+    public SearchPatientFrame(String college) {
+        initComponents();
+        this.selectedCollege = college;
+        refreshTable();
     }
     
     public void refreshTable() {
 
-    ArrayList<StudentPatient> x = MainMenuFrame.PObj.getPatientList();
+        ArrayList<StudentPatient> x;
+
+    if (selectedCollege.equals("ALL")) {
+        x = MainMenuFrame.PObj.getPatientList();
+    } else {
+        x = MainMenuFrame.PObj.filterCollege(selectedCollege);
+    }
 
     String[] columns = {
         "First Name",
@@ -46,21 +54,15 @@ public class SearchPatientFrame extends javax.swing.JFrame {
 
     Object[][] data = new Object[x.size()][4];
 
-    for(int i = 0; i < x.size(); i++) {
-
+    for (int i = 0; i < x.size(); i++) {
         data[i][0] = x.get(i).getFirstName();
-
         data[i][1] = x.get(i).getLastName();
-
         data[i][2] = x.get(i).getStudentID();
-
         data[i][3] = x.get(i).getCollege();
     }
 
-    DefaultTableModel model = new DefaultTableModel(data, columns);
-
-    jTable1.setModel(model);
-
+    jTable1.setModel(new DefaultTableModel(data, columns));
+    
     }
 
     /**
@@ -81,6 +83,7 @@ public class SearchPatientFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Search");
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -197,6 +200,45 @@ public class SearchPatientFrame extends javax.swing.JFrame {
         refreshTable();
     
     }//GEN-LAST:event_jButton2ActionPerformed
+    
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        String keyword = jTextField1.getText().toLowerCase();
+        String columns[] = {"First Name", "Last Name", "ID", "College"};
+
+        ArrayList<StudentPatient> baseList;
+
+        if (selectedCollege.equals("ALL")) {
+            baseList = MainMenuFrame.PObj.getPatientList();
+        } else {
+            baseList = MainMenuFrame.PObj.filterCollege(selectedCollege);
+        }
+
+        ArrayList<StudentPatient> result = new ArrayList<>();
+
+        for (StudentPatient p : baseList) {
+            if (keyword.isEmpty() ||
+                p.getFirstName().toLowerCase().contains(keyword) ||
+                p.getLastName().toLowerCase().contains(keyword) ||
+                p.getStudentID().toLowerCase().contains(keyword)) {
+
+                result.add(p);
+            }
+        }
+        
+        Object[][] data = new Object[result.size()][4];
+
+        for (int i = 0; i < result.size(); i++) {
+            data[i][0] = result.get(i).getFirstName();
+            data[i][1] = result.get(i).getLastName();
+            data[i][2] = result.get(i).getStudentID();
+            data[i][3] = result.get(i).getCollege();
+        }
+
+        jTable1.setModel(new DefaultTableModel(data, columns));
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

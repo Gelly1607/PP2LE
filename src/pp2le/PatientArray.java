@@ -4,7 +4,6 @@
  */
 package pp2le;
 
-import java.util.ArrayList;
 /**
  *
  * @author Allysa Maravilla
@@ -46,29 +45,23 @@ public class PatientArray {
         return patientList;
 
     }
-
+    
     // SEARCH PATIENT
-    public ArrayList<StudentPatient> searchPatient(String key) {
+    public ArrayList<StudentPatient> searchPatients(String keyword) {
 
-        ArrayList<StudentPatient> result =
-                new ArrayList<>();
+        ArrayList<StudentPatient> result = new ArrayList<>();
 
-        key = key.toLowerCase();
+        for (StudentPatient p : patientList) {
 
-        for(StudentPatient p : patientList) {
-
-            if(p.getFirstName().toLowerCase().contains(key)
-            || p.getLastName().toLowerCase().contains(key)
-            || p.getStudentID().toLowerCase().contains(key)) {
+            if (p.getLastName().toLowerCase().contains(keyword.toLowerCase()) ||
+                p.getFirstName().toLowerCase().contains(keyword.toLowerCase()) ||
+                p.getStudentID().toLowerCase().contains(keyword.toLowerCase())) {
 
                 result.add(p);
-
             }
-
         }
 
         return result;
-
     }
 
     // FILTER COLLEGE
@@ -113,20 +106,20 @@ public class PatientArray {
         File file = new File("PatientRecords.csv");
         Scanner sc = new Scanner(file);
 
-        patientList.clear(); // important: avoid duplicates
+        patientList.clear();
 
         while (sc.hasNextLine()) {
 
-    String line = sc.nextLine();
+        String line = sc.nextLine();
 
-    if (line.trim().isEmpty()) continue;
+        if (line.trim().isEmpty()) continue;
 
-    String[] data = line.split(",");
+        String[] data = line.split(",", -1);
 
-    if (data.length < 19) {
-        System.out.println("Skipping broken line: " + line);
-        continue;
-    }
+        if (data.length < 19) {
+            System.out.println("BROKEN CSV LINE (" + data.length + " fields): " + line);
+            continue;
+        }
 
         StudentPatient p = new StudentPatient(
             data[0],

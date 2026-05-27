@@ -12,6 +12,8 @@ package pp2le;
 import javax.swing.JOptionPane;
 import javax.swing.*;
 import java.io.FileNotFoundException;
+import javax.swing.JFileChooser;
+import java.io.File;
 
 public class PatientFormFrame extends javax.swing.JFrame {
     
@@ -60,9 +62,9 @@ public class PatientFormFrame extends javax.swing.JFrame {
     jTextField13.setText(p.getAllergies());
     jTextField14.setText(p.getMedicalHistory());
     jTextField15.setText(p.getSymptoms());
-    jTextField16.setText(p.getMedicinesTaken());
-    jTextField17.setText(p.getDateVisit());
-    jTextField18.setText(p.getNurseRemarks());
+    jTextField17.setText(p.getMedicinesTaken());
+    jTextField18.setText(p.getDateVisit());
+    jTextField16.setText(p.getNurseRemarks());
     jTextField19.setText(p.getLabResultPath());
 
     jButton2.setText("Update");
@@ -212,6 +214,12 @@ public class PatientFormFrame extends javax.swing.JFrame {
         jLabel23.setText("File Path:");
 
         jLabel19.setText("Symptoms:");
+
+        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField19ActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("Major:");
 
@@ -486,12 +494,35 @@ public class PatientFormFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+    JFileChooser fileChooser = new JFileChooser();
+
+        int result = fileChooser.showOpenDialog(this);
+
+    if (result == JFileChooser.APPROVE_OPTION) {
+
+        File selectedFile = fileChooser.getSelectedFile();
+
+        String filePath = selectedFile.getAbsolutePath();
+        
+        // show file path in the textbox
+        jTextField19.setText(filePath);
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
         if (jButton2.getText().equals("Save")) {
+            
+            for (StudentPatient spCheck : MainMenuFrame.PObj.getPatientList()) {
+            if (spCheck.getStudentID().equals(jTextField3.getText())) {
+            JOptionPane.showMessageDialog(this, "Student ID already exists!");
+            return;
+            }
+        }
+            
             StudentPatient sp = new StudentPatient(
                 jTextField1.getText(),
                 jTextField2.getText(),
@@ -513,14 +544,16 @@ public class PatientFormFrame extends javax.swing.JFrame {
             sp.setMedicinesTaken(jTextField17.getText());
             sp.setDateVisit(jTextField18.getText());
             sp.setNurseRemarks(jTextField16.getText());
+            
+            sp.setLabResultPath(jTextField19.getText());
 
             MainMenuFrame.PObj.addPatient(sp);
-            
+
             try {
                 MainMenuFrame.PObj.writeToFile();
-    
+
             } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
+                ex.printStackTrace();
             }
 
             JOptionPane.showMessageDialog(this,"Patient Saved Successfully!");
@@ -557,7 +590,7 @@ public class PatientFormFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Successfully updated.");
             
             if (parent != null) {
-            parent.refreshTable();
+                parent.refreshTable();
             }
             this.dispose();
 
@@ -598,6 +631,10 @@ public class PatientFormFrame extends javax.swing.JFrame {
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField19ActionPerformed
 
     /**
      * @param args the command line arguments
